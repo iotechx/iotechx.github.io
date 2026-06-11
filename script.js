@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
             console.error("Fetch Error:", err);
-            app.innerHTML = `<div style="color:red; text-align:center; padding:20px;">
+            app.innerHTML = `<div class="error-message">
                 <strong>Error loading thesis data.</strong><br>
                 <em>Note: Browsers block direct file access for security (CORS). 
                 Please use a local server (e.g., Live Server in VS Code, or 'python -m http.server').</em>
@@ -22,32 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     function renderThesis(thesisData) {
-        // --- 1. INJECT COMMON STYLES FROM JSON ---
-        const styleTag = document.createElement('style');
-        let cssString = "/* Common Styles */\n";
-
-        if (thesisData.config && thesisData.config.common_style) {
-            for (const [selector, rules] of Object.entries(thesisData.config.common_style)) {
-                cssString += `${selector} { ${rules} } \n`;
-            }
-        }
-
-        styleTag.textContent = cssString;
-        document.head.appendChild(styleTag);
-
-        // Apply Theme Config
-        const root = document.documentElement;
-        if (thesisData.config && thesisData.config.theme) {
-            const t = thesisData.config.theme;
-            if (t.primary_color) root.style.setProperty('--primary', t.primary_color);
-            if (t.secondary_color) root.style.setProperty('--secondary', t.secondary_color);
-            if (t.accent_color) root.style.setProperty('--accent', t.accent_color);
-            if (t.background_color) root.style.setProperty('--bg', t.background_color);
-            if (t.text_color) root.style.setProperty('--text', t.text_color);
-            if (t.paper_width) root.style.setProperty('--width', t.paper_width);
-            if (t.font_heading) root.style.setProperty('--font-head', t.font_heading);
-            if (t.font_body) root.style.setProperty('--font-body', t.font_body);
-        }
+        // Styling is handled by styles.css now.
 
         // --- 2. RENDER HEADER ---
         const header = document.createElement('div');
@@ -56,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let authorsHtml = '';
         if (thesisData.meta.authors && Array.isArray(thesisData.meta.authors)) {
             authorsHtml = thesisData.meta.authors.map(author =>
-                `<a href="${author.url}" target="_blank" rel="noopener noreferrer" style="color:var(--accent); text-decoration:none; font-weight:bold;">${author.name}</a>`
+                `<a href="${author.url}" target="_blank" rel="noopener noreferrer" class="author-link">${author.name}</a>`
             ).join(', ');
         } else if (thesisData.meta.author) {
             authorsHtml = thesisData.meta.author;
@@ -66,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let fieldsHtml = '';
         if (thesisData.meta.fields && Array.isArray(thesisData.meta.fields)) {
             fieldsHtml = thesisData.meta.fields.map(field =>
-                `<a href="${field.url}" target="_blank" rel="noopener noreferrer" style="color:var(--secondary); text-decoration:none; border-bottom:1px dotted var(--secondary);">${field.name}</a>`
+                `<a href="${field.url}" target="_blank" rel="noopener noreferrer" class="field-link">${field.name}</a>`
             ).join(', ');
         } else {
             fieldsHtml = thesisData.meta.field || '';
@@ -75,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         header.innerHTML = `
             <h1 class="doc-title">${thesisData.meta.title}</h1>
             <div class="meta-data">
-                <div style="margin-bottom:10px; font-size:1.1em;">
+                <div class="meta-row meta-authors">
                     <strong>By:</strong> ${authorsHtml}
                 </div>
-                <div><strong>Date:</strong> ${thesisData.meta.date}</div>
-                <div style="margin-top:5px;"><strong>Field:</strong> ${fieldsHtml}</div>
+                <div class="meta-row"><strong>Date:</strong> ${thesisData.meta.date}</div>
+                <div class="meta-row"><strong>Field:</strong> ${fieldsHtml}</div>
             </div>
         `;
         app.appendChild(header);
@@ -87,15 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 3. RENDER SECTIONS ---
         thesisData.content.forEach(section => {
 
-            // --- INJECT SECTION-SPECIFIC STYLES ---
-            if (section.specific_style) {
-                let sectionCss = `\n/* Specific Style for Section: ${section.heading || 'Untitled'} */\n`;
-                for (const [selector, rules] of Object.entries(section.specific_style)) {
-                    sectionCss += `${selector} { ${rules} } \n`;
-                }
-                // Append to existing style tag
-                styleTag.textContent += sectionCss;
-            }
 
             if (section.type === 'abstract') {
                 const div = document.createElement('div');
@@ -165,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     div.className = 'bib-entry';
                     div.id = `ref-${entry.id}`;
                     let content = `<span class="bib-id">[${entry.id}]</span> `;
-                    content += `<a href="${entry.url}" target="_blank" rel="noopener noreferrer">${entry.text}</a> <span style="font-size:0.8em">↗</span>`;
+                    content += `<a href="${entry.url}" target="_blank" rel="noopener noreferrer">${entry.text}</a> <span class="external-link-icon">↗</span>`;
                     div.innerHTML = content;
                     wrapper.appendChild(div);
                 });

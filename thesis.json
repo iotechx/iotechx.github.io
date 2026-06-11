@@ -15,38 +15,6 @@
       { "name": "Grok AI", "url": "https://grok.com/" }
     ]
   },
-  "config": {
-    "theme": {
-      "primary_color": "#2c3e50",
-      "secondary_color": "#34495e",
-      "accent_color": "#e74c3c",
-      "background_color": "#ffffff",
-      "text_color": "#222222",
-      "paper_width": "800px",
-      "font_heading": "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      "font_body": "'Georgia', serif"
-    },
-    "common_style": {
-      ":root": "--primary: #333; --secondary: #555; --accent: #d32f2f; --bg: #fff; --text: #222; --width: 800px; --font-head: sans-serif; --font-body: serif;",
-      "*, *:before, *:after": "box-sizing: border-box;",
-      "body": "background-color: #f9f9f9; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; line-height: 1.4; margin: 0; padding: 20px 10px;",
-      ".container": "width: 100%; max-width: var(--width); margin: 0 auto; background: var(--bg); padding: 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eaeaea; border-radius: 4px;",
-      "h1.doc-title": "text-align: center; font-family: var(--font-head); color: var(--primary); font-size: 1.75rem; font-weight: 600; margin-bottom: 5px; border-bottom: 1px solid #ddd; padding-bottom: 15px; word-wrap: break-word;",
-      ".meta-data": "text-align: center; font-family: var(--font-head); color: #555; margin-bottom: 35px; font-size: 0.85rem; line-height: 1.3;",
-      "h2": "margin-top: 30px; margin-bottom: 15px; font-family: var(--font-head); color: var(--primary); font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid #eee; padding-bottom: 5px;",
-      "h3": "margin-top: 20px; margin-bottom: 10px; font-family: var(--font-head); color: var(--secondary); font-size: 1.05rem; font-weight: 600;",
-      "p": "margin-bottom: 10px; text-align: justify;",
-      "a.citation-link": "color: var(--accent); text-decoration: none; font-weight: bold; font-size: 0.75em; vertical-align: super; margin-left: 1px;",
-      "a.citation-link:hover": "text-decoration: underline;",
-      "blockquote": "font-style: italic; background: transparent; color: #444; padding: 10px 20px; margin: 20px 0; border-left: 3px solid var(--accent);",
-      "ul": "margin: 10px 0; padding-left: 25px;",
-      "li": "margin-bottom: 5px;",
-      "figure": "margin: 25px 0; text-align: center; background: transparent; border: none; padding: 0;",
-      "figure img": "max-width: 100%; height: auto; display: block; margin: 0 auto; border: 1px solid #eee;",
-      "figcaption": "margin-top: 8px; font-family: var(--font-head); font-size: 0.8rem; color: #666; font-style: italic;",
-      "@media screen and (max-width: 768px)": "body { padding: 0; } .container { width: 100%; max-width: 100%; border-radius: 0; box-shadow: none; padding: 20px; border: none; } h1.doc-title { font-size: 1.5rem; } h2 { font-size: 1.15rem; margin-top: 25px; } .meta-data { margin-bottom: 25px; }"
-    }
-  },
   "content": [
     {
       "type": "abstract",
@@ -56,10 +24,6 @@
     {
       "type": "section",
       "heading": "KEY TERMINOLOGY",
-      "specific_style": {
-        ".definition-list": "background: transparent; padding: 5px 0 5px 15px; border-left: 3px solid #ddd; margin: 10px 0;",
-        ".def-term": "font-weight: bold; color: var(--primary);"
-      },
       "content": [
         { "type": "definition", "term": "Eternal Now", "def": "The state of reality achieved when the temporal interval (Δt) between events is perceived as functionally zero, collapsing the illusion of past and future into pure presence." },
         { "type": "definition", "term": "Correlation (Ontological)", "def": "The non-local, instantaneous co-existence of two or more events (A, B) within the Observer's field of consciousness." },
@@ -202,14 +166,6 @@
     {
       "type": "bibliography",
       "heading": "REFERENCES",
-      "specific_style": {
-        ".bibliography": "margin-top: 40px; border-top: 1px solid #ccc; padding-top: 15px;",
-        ".bib-entry": "margin-bottom: 6px; padding-left: 25px; text-indent: -25px; font-size: 0.85rem;",
-        ".bib-id": "font-weight: bold; color: var(--secondary); margin-right: 5px;",
-        ".bib-entry a": "color: var(--primary); text-decoration: none; border-bottom: none;",
-        ".bib-entry a:hover": "text-decoration: underline; color: var(--accent);",
-        ".bib-entry:target": "background-color: #fffbe6; transition: background-color 0.3s;"
-      },
       "entries": [
         { 
           "id": "1", 
