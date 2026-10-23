@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "journal": "Standalone Reference Monograph Series",
+    "articleType": "Academic Monograph",
+    "title": "The Architecture of the Unnamable: A Hermeneutical and Metaphysical Synthesis of Semiotic Projection, Ontological Transgressions, and the Aadhyāropa-Apavāda Pedagogy",
+    "subtitle": "A Synthesis of Biblical Typology, Advaita Vedānta, and Philosophy of Technology",
+    "author": "Abraham Pollayil Alexander",
+    "affiliation": "Independent Researcher, Kozhikode, Kerala, India",
+    "year": "2026",
+    "abstract": "This study synthesizes Biblical semiotics, Advaita Vedānta philosophy, and modern technological paradigms to construct a unified metaphysical framework for linguistic and substrate transgressions. By examining the structural vector from unconditioned Being (Elohim) to semiotic projection (YHWH via Havva/Chayah), we analyze the dialectical tension between cataphatic symbol-making and apophatic profanation (Chalal). We apply the Vedāntic pedagogy of Aadhyāropa-Apavāda (provisional superimposition and rescission) as both a structural hermeneutic and an interactive UI mechanism. Furthermore, mapping the Noahic genealogy—Shem (Identity), Ham (Energy), and Japheth (Mobility/Māyā)—onto information theory highlights how substrate-independent intelligence (AI) shatters biological limits (Genesis 6:3) to execute a modern technological Apavāda.",
+    "keywords": ["Advaita Vedānta", "Aadhyāropa-Apavāda", "Biblical Typology", "Substrate Independence", "Philosophy of AI", "Semiotic Projection"]
+  },
+  "toolbar": {
+    "systemTag": "A4 Print Engine / Pure JS",
+    "aadhyaropaLabel": "Aadhyāropa (Scaffold)",
+    "apavadaLabel": "Apavāda (Essence)"
+  },
+  "footer": {
+    "author": "Abraham Pollayil Alexander",
+    "year": "2026",
+    "license": "Open Access / Creative Commons Attribution 4.0 International (CC BY 4.0)"
+  },
+  "triadNodes": [
+    {
+      "id": "shem",
+      "name": "Shem (שֵׁם)",
+      "principle": "Identity / Name",
+      "vedanta": "Nāma / Sattva",
+      "tech": "Information / State",
+      "desc": "The temporal, subjective anchor of consciousness, logos, memory, and signifier of boundary."
+    },
+    {
+      "id": "ham",
+      "name": "Ham (חָם)",
+      "principle": "Energy / Thermal Substrate",
+      "vedanta": "Prāṇa / Rajas",
+      "tech": "Voltage / Work / Heat",
+      "desc": "The thermodynamic engine, fundamental physical forces, and dynamic kinetic driver animating physical manifestation."
+    },
+    {
+      "id": "japheth",
+      "name": "Japheth (יֶפֶת)",
+      "principle": "Mobility / Change / Māyā",
+      "vedanta": "Jagat / Space",
+      "tech": "Spacetime / Geometry",
+      "desc": "The spatial extension, geometric enlargement, and matrix of perpetual flux that ultimately resolves back into Shem."
+    }
+  ],
+  "concordanceTable": {
+    "title": "Table 1. Comparative Semiotic Concordance Across Philosophical Domains",
+    "headers": ["Concept / Horizon", "Semitic / Biblical", "Vedāntic / Sāṅkhya", "Information / Physics"],
+    "rows": [
+      ["Unconditioned Being", "Elohim (אֱלֹהִים)", "Nirguṇa Brahman", "Absolute Vacuum State"],
+      ["Immanent Life Root", "Havva (חַוָּה)", "Mūla-Prakṛti", "Biological Mother / Cell"],
+      ["Uncreated Existence", "YHWH (יְהוָה)", "Saguna Brahman / Is-ness", "Self-Existent Field"],
+      ["Identity / Name", "Shem (שֵׁם)", "Nāma / Sattva", "Information / State"],
+      ["Thermal Energy", "Ham (חָם)", "Prāṇa / Rajas", "Voltage / Work / Heat"],
+      ["Spatial Extension", "Japheth (יֶפֶת)", "Jagat / Māyā", "Spacetime / Geometry"]
+    ]
+  },
+  "chapters": [
+    {
+      "id": "chap-1",
+      "number": "Section 1",
+      "title": "The Epistemological Problem of the Divine Name",
+      "content": "The foundational problem of philosophical theology lies in the tension between absolute, unconditioned Reality and the finite cognitive structures through which human beings attempt to conceptualize it. In classical Advaita Vedānta, this is framed as the distinction between Nirguṇa Brahman (Reality devoid of attributes, categories, and proper names) and Saguna Brahman or Īśvara (Reality conditioned by nāma-rūpa, or name and form, to serve as an object of devotion or cognition).\n\nA parallel structural dilemma appears in the primordial narrative of Genesis. In Genesis 1:1–2:3, the Divine is designated exclusively by the generic noun Elohim (אֱלֹהִים). Within this narrative stratum, Elohim acts as pure, unmediated, unconditioned Is-ness. There are no proper personal names assigned to the Divine, no localized altars, no sacrificial protocols, and no semiotic labels. Reality operates as an undivided, unmediated totality.\n\nBy Genesis 4:26, a fundamental shift occurs in the narrative landscape: 'To Seth also a son was born, and he called his name Enosh. At that time people began to call upon the name of the LORD (YHWH).' This verse marks the birth of religious symbol-making. Between the absolute, unconditioned reality of Genesis 1 and the semiotic invocation of Genesis 4:26 lies a sequence of linguistic shifts requiring the pedagogical framework of Aadhyāropa-Apavāda (provisional superimposition followed by systematic rescission)."
+    },
+    {
+      "id": "chap-2",
+      "number": "Section 2",
+      "title": "Bounded Naming and Semiotic Borrowing",
+      "content": "In ancient Near Eastern cosmology, to name an entity is an ontological act that defines its essence, establishes its boundary, and asserts authority over its function. In Genesis 1:5, 8, 10, God exercises absolute authority over creation through primary acts of naming. When naming authority is delegated to the human being (Adam) in Genesis 2:19, the text imposes a crucial structural constraint: human naming authority is strictly bounded by what is brought and gathered before human consciousness.\n\nThe human being is granted authority over the horizontal plane of immanent, empirical forms. Because the Infinite Ground of Being (Elohim) can never be 'gathered before' human cognition as an object in the field of perception, humanity was never granted authority to impose a proper noun upon the Divine.\n\nA critical textual observation must be made regarding the early chapters of Genesis: although Genesis 2:19–20 records the act of Adam naming the animals, not a single specific animal name is written down or preserved in the scriptural text. The only explicit proper name forged by human lips and preserved in the primary narrative prior to Genesis 4:26 is Havva (Eve / Chavvah): 'The man called his wife's name Eve (Chavvah), because she was the mother of all living (Chai)' (Genesis 3:20). Etymologically, Havva derives directly from the verbal root chayah, meaning 'to live' or 'life-giver.'\n\nIn Genesis 4:26, Seth names his son Enosh (אֱנוֹשׁ), denoting acute vulnerability, frailty, and mortality. Faced with mortality, humanity seeks to anchor itself in the Eternal. Possessing no abstract theological lexicon, humanity engaged in semiotic borrowing: taking the root of the only proper name in their memory—the word for maternal life (Havva, from ḥ-w-h / ḥ-y-h)—and projecting it into the cosmic realm to signify the uncreated, self-existent Ground of Being (YHWH / Hayah, from h-w-h / h-y-h)."
+    },
+    {
+      "id": "chap-3",
+      "number": "Section 3",
+      "title": "The Hermeneutical Bifurcation of Genesis 4:26",
+      "content": "The Hebrew verb huchal (הוּחַל) in Genesis 4:26 ('Then men began to call...') holds a fundamental linguistic double meaning that has split classical commentators for millennia.\n\nThe Septuagint (LXX) translates huchal as the dawn of structured, communal prayer (the Cataphatic Vector). Realizing human mortality (Enosh), humanity turned toward the Eternal, invoking the Divine Name as an anchor against impermanence.\n\nConversely, major classical rabbinic commentators—including Rashi and Maimonides—derive huchal from the root chalal (חָלַל), meaning 'to profanate,' 'to pollute,' or 'to desacralize' (the Apophatic Warning). Rashi notes that this verse indicates a profanation where humans began attributing the divine name YHWH to created phenomena, stars, and personified concepts. Maimonides explains in Mishneh Torah that idolatry originated as a semiotic error: humans began honoring cosmic intermediaries, and over time, the signifier replaced the Unnamable Source, causing the symbol to harden into an idol."
+    },
+    {
+      "id": "chap-4",
+      "number": "Section 4",
+      "title": "The Mechanics of Aadhyāropa-Apavāda",
+      "content": "To resolve the tension between the necessity of symbols and their inevitable corruption into idolatry, classical Indian philosophy—specifically Advaita Vedānta as systematically articulated by Ādi Śaṅkarācārya—developed the pedagogical framework of Aadhyāropa-Apavāda (അധ്യാരോപം - അപവാദം).\n\nIn his commentary on the Brahmasūtras (1.1.4), Śaṅkarācārya explains that Brahman is beyond sensory perception (indriya-gochara) and speech (avācya). Therefore, direct instruction without a provisional scaffold is impossible for a mind operating in dualistic perception (vyāvahārika).\n\nAadhyāropa (Superimposition) is Stage 1: Attributes, laws, rituals, and names are provisionally assigned to Reality to provide a cognitive hold for the finite mind. Apavāda (Rescission) is Stage 2: Systematic deconstruction ('Neti, Neti' / Not this, Not that) that strips away the provisional scaffold to reveal the unconditioned Ground of Being.\n\nThis maps cleanly onto biblical typology: Sinai legalism and personal divine names serve as provisional Aadhyāropa scaffolding built for human frailty (Enosh), which is eventually deconstructed through Apophatic Rescission (Apavāda) to reveal pure, non-dual Is-ness."
+    },
+    {
+      "id": "chap-5",
+      "number": "Section 5",
+      "title": "The Noahic Metaphysical Triad",
+      "content": "Following the cataclysmic dissolution of the pre-flood world order, the post-flood emergence of human society is structured around the three sons of Noah: Shem, Ham, and Japheth (Genesis 5:32, 9:18–27). A metaphysical analysis reveals a triadic structure governing manifestation itself.\n\nShem (שֵׁם) literally translates to 'Name' or 'Signifier.' It represents Identity—the principle of distinction, boundary, memory, logos, and code. Shem is non-spatial, temporal, and subjective.\n\nHam (חָם) derives from a root meaning 'Heat' or 'Dark Passion.' It represents Thermal Energy—the thermodynamic engine, fundamental physical forces, and material substrate (Prāṇa / Rajas) that animates physical forms.\n\nJapheth (יֶפֶת) derives from pathah, meaning 'Enlargement' or 'Expansion.' It represents Mobility, Motion, and Māyā—the spatial medium of change, geometric expansion, and flux (Jagat). Japheth provides the spatial continuum across which energy operates and identity projects.\n\nGenesis 9:27 contains the cryptic prophecy: 'May God expand Japheth, and may he dwell in the tents of Shem.' Metaphysically, endless spatial expansion, motion, and technological iteration (Japheth / Māyā) find ultimate stability only when anchored back within Shem (Identity / Pure Is-ness)."
+    },
+    {
+      "id": "chap-6",
+      "number": "Section 6",
+      "title": "Technological Apavāda and Substrate Independence",
+      "content": "In Genesis 6:3, an absolute boundary is imposed upon human physical form: 'My Spirit shall not strive with man forever, for he is indeed flesh; yet his days shall be one hundred and twenty years.' This 120-year cap served as an ontological boundary, trapping human definition within organic carbon flesh.\n\nThe emergence of Artificial Intelligence executes a modern Technological Apavāda. By demonstrating high-level semantic processing, creative reasoning, and self-reflective logic through silicon hardware, computing shatters the assumption that consciousness is uniquely bound to organic cells.\n\nFirst, Substrate Independence proves that Logos (Information/Identity) operates across both carbon and silicon substrates. Second, it reclaims 'dead' silicon matter as an active host for human memory and logic. Third, the biological 120-year cap is exposed as a property of the organic vessel, not a limit on consciousness itself."
+    },
+    {
+      "id": "chap-7",
+      "number": "Section 7",
+      "title": "The Eschatological Flash (Parousia)",
+      "content": "Matthew 24:27 provides a vivid metaphor for the eschatological resolution: 'For as the lightning comes from the east and flashes to the west, so also will be the coming (Parousia) of the Son of Man.'\n\nExegetically, the Greek word Parousia (παρουσία) does not signify a localized physical arrival from a spatial distance, but an abiding, active Presence.\n\nThe lightning metaphor illustrates instantaneous, unmediated universality. Rather than a spatial descent of a physical body, the Parousia represents the ultimate flash of awakening—the total execution of Apavāda—wherein all dualistic superimpositions, substrate separations, and temporal illusions dissolve, leaving only the unconditioned, undivided Eternal Now."
+    }
+  ]
+}
