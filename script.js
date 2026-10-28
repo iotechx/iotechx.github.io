@@ -1,147 +1,111 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const app = document.getElementById('app');
+document.addEventListener('DOMContentLoaded', async () => {
+ const apavadaToggle = document.getElementById('apavada-toggle');
+ apavadaToggle.addEventListener('change', () => {
+  document.body.classList.toggle('apavada-active', apavadaToggle.checked);
+ });
 
-    fetch('thesis.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            app.innerHTML = '';
-            renderThesis(data);
-        })
-        .catch(err => {
-            console.error("Fetch Error:", err);
-            app.innerHTML = `<div class="error-message">
-                <strong>Error loading thesis data.</strong><br>
-                <em>Note: Browsers block direct file access for security (CORS). 
-                Please use a local server (e.g., Live Server in VS Code, or 'python -m http.server').</em>
-            </div>`;
-        });
+ try {
+  const response = await fetch('thesis-data-reference.json');
+  if (!response.ok) {
+   throw new Error(`HTTP error ${response.status}`);
+  }
+  renderThesis(await response.json());
+ } catch (error) {
+  console.error('Failed to load thesis data:', error);
+  const message = document.createElement('p');
+  message.className = 'error-message';
+  message.textContent = 'Unable to load the manuscript. Open this page through a local web server and confirm thesis-data-reference.json is available.';
+  document.querySelector('.a4-container').prepend(message);
+ }
 
-    function renderThesis(thesisData) {
-        // Styling is handled by styles.css now.
+ function renderThesis(data) {
+  document.title = data.metadata.title;
+  setText('journal-name', data.metadata.journal || 'Academic Monograph');
+  setText('article-type', data.metadata.articleType || 'Research Article');
+  setText('meta-title', data.metadata.title);
+  setText('meta-author', data.metadata.author);
+  setText('meta-affiliation', data.metadata.affiliation || '');
+  setText('meta-abstract', data.metadata.abstract || '');
+  setText('meta-keywords', (data.metadata.keywords || []).join(' • '));
+  setText('toolbar-system-tag', data.toolbar.systemTag || '');
+  setText('toolbar-label-left', data.toolbar.aadhyaropaLabel || 'Aadhyāropa');
+  setText('toolbar-label-right', data.toolbar.apavadaLabel || 'Apavāda');
+  setText('footer-copyright', `© ${data.footer.year} ${data.footer.author}`);
+  setText('footer-license', data.footer.license || '');
 
-        // --- 2. RENDER HEADER ---
-        const header = document.createElement('div');
+  const triadContainer = document.getElementById('triad-container');
+  data.triadNodes.forEach(node => {
+   const card = document.createElement('article');
+   card.className = 'triad-card scaffold-hide';
 
-        // Authors
-        let authorsHtml = '';
-        if (thesisData.meta.authors && Array.isArray(thesisData.meta.authors)) {
-            authorsHtml = thesisData.meta.authors.map(author =>
-                `<a href="${author.url}" target="_blank" rel="noopener noreferrer" class="author-link">${author.name}</a>`
-            ).join(', ');
-        } else if (thesisData.meta.author) {
-            authorsHtml = thesisData.meta.author;
-        }
+   const heading = document.createElement('h3');
+   heading.textContent = node.name;
+   const subtitle = document.createElement('span');
+   subtitle.className = 'sub';
+   subtitle.textContent = `${node.principle} | ${node.vedanta} | ${node.tech}`;
+   const description = document.createElement('p');
+   description.textContent = node.desc;
 
-        // Fields
-        let fieldsHtml = '';
-        if (thesisData.meta.fields && Array.isArray(thesisData.meta.fields)) {
-            fieldsHtml = thesisData.meta.fields.map(field =>
-                `<a href="${field.url}" target="_blank" rel="noopener noreferrer" class="field-link">${field.name}</a>`
-            ).join(', ');
-        } else {
-            fieldsHtml = thesisData.meta.field || '';
-        }
+   card.append(heading, subtitle, description);
+   triadContainer.appendChild(card);
+  });
 
-        header.innerHTML = `
-            <h1 class="doc-title">${thesisData.meta.title}</h1>
-            <div class="meta-data">
-                <div class="meta-row meta-authors">
-                    <strong>By:</strong> ${authorsHtml}
-                </div>
-                <div class="meta-row"><strong>Date:</strong> ${thesisData.meta.date}</div>
-                <div class="meta-row"><strong>Field:</strong> ${fieldsHtml}</div>
-            </div>
-        `;
-        app.appendChild(header);
+  if (data.concordanceTable) {
+   renderConcordance(data.concordanceTable);
+  }
 
-        // --- 3. RENDER SECTIONS ---
-        thesisData.content.forEach(section => {
+  const chapterContainer = document.getElementById('chapter-container');
+  data.chapters.forEach((chapter, index) => {
+   const article = document.createElement('article');
+   article.className = `chapter${index > 3 ? ' scaffold-hide' : ''}`;
 
+   const heading = document.createElement('h2');
+   heading.textContent = `${chapter.number}. ${chapter.title}`;
+   article.appendChild(heading);
 
-            if (section.type === 'abstract') {
-                const div = document.createElement('div');
-                div.innerHTML = `<h3>${section.heading}</h3><p><strong>${parseText(section.body)}</strong></p><hr>`;
-                app.appendChild(div);
-            }
+   chapter.content.split(/\n\s*\n/).filter(Boolean).forEach(text => {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    article.appendChild(paragraph);
+   });
 
-            else if (section.type === 'section') {
-                const wrapper = document.createElement('div');
-                const h2 = document.createElement('h2');
-                h2.textContent = section.number ? `${section.number}. ${section.heading}` : section.heading;
-                wrapper.appendChild(h2);
+   chapterContainer.appendChild(article);
+  });
+ }
 
-                section.content.forEach(item => {
-                    if (item.type === 'paragraph') {
-                        const p = document.createElement('p');
-                        p.innerHTML = parseText(item.text);
-                        wrapper.appendChild(p);
-                    }
-                    else if (item.type === 'subheader') {
-                        const h3 = document.createElement('h3');
-                        h3.textContent = item.text;
-                        wrapper.appendChild(h3);
-                    }
-                    else if (item.type === 'definition') {
-                        const div = document.createElement('div');
-                        div.className = 'definition-list';
-                        div.innerHTML = `<span class="def-term">${item.term}:</span> ${parseText(item.def)}`;
-                        wrapper.appendChild(div);
-                    }
-                    else if (item.type === 'list') {
-                        const ul = document.createElement('ul');
-                        item.items.forEach(liText => {
-                            const li = document.createElement('li');
-                            li.innerHTML = parseText(liText);
-                            ul.appendChild(li);
-                        });
-                        wrapper.appendChild(ul);
-                    }
-                    else if (item.type === 'blockquote') {
-                        const bq = document.createElement('blockquote');
-                        bq.innerHTML = parseText(item.text);
-                        wrapper.appendChild(bq);
-                    }
-                    else if (item.type === 'image') {
-                        const figure = document.createElement('figure');
-                        const imgSource = item.fileName || 'missing-file-ref.png';
-                        figure.innerHTML = `
-                            <img src="${imgSource}" alt="${item.alt}" onerror="this.onerror=null;this.parentElement.innerHTML='<p style=color:red>[Image missing: ${imgSource}]</p>'">
-                            <figcaption>${item.caption}</figcaption>
-                        `;
-                        wrapper.appendChild(figure);
-                    }
-                });
-                app.appendChild(wrapper);
-            }
+ function renderConcordance(tableData) {
+  const section = document.getElementById('concordance-container');
+  const heading = document.createElement('h2');
+  heading.textContent = tableData.title;
 
-            else if (section.type === 'bibliography') {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'bibliography';
-                const h2 = document.createElement('h2');
-                h2.textContent = section.heading;
-                wrapper.appendChild(h2);
+  const table = document.createElement('table');
+  table.className = 'concordance-table';
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  tableData.headers.forEach(text => {
+   const cell = document.createElement('th');
+   cell.scope = 'col';
+   cell.textContent = text;
+   headerRow.appendChild(cell);
+  });
+  thead.appendChild(headerRow);
 
-                section.entries.forEach(entry => {
-                    const div = document.createElement('div');
-                    div.className = 'bib-entry';
-                    div.id = `ref-${entry.id}`;
-                    let content = `<span class="bib-id">[${entry.id}]</span> `;
-                    content += `<a href="${entry.url}" target="_blank" rel="noopener noreferrer">${entry.text}</a> <span class="external-link-icon">↗</span>`;
-                    div.innerHTML = content;
-                    wrapper.appendChild(div);
-                });
-                app.appendChild(wrapper);
-            }
-        });
-    }
+  const tbody = document.createElement('tbody');
+  tableData.rows.forEach(row => {
+   const tableRow = document.createElement('tr');
+   row.forEach(text => {
+    const cell = document.createElement('td');
+    cell.textContent = text;
+    tableRow.appendChild(cell);
+   });
+   tbody.appendChild(tableRow);
+  });
 
-    function parseText(text) {
-        if (!text) return "";
-        return text.replace(/\[(\d+)\]/g, '<a href="#ref-$1" class="citation-link">[$1]</a>');
-    }
+  table.append(thead, tbody);
+  section.append(heading, table);
+ }
+
+ function setText(id, value) {
+  document.getElementById(id).textContent = value || '';
+ }
 });

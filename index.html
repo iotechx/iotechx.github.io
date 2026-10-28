@@ -2,24 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Eternal Now</title>
-    <link rel="stylesheet" href="styles.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title id="page-title">Loading Manuscript...</title>
+ <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div id="app" class="container">
-    </div>
-    <script src="script.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YPG5BRLC20"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-YPG5BRLC20');
-    </script>
+ <main class="a4-container">
+  <header>
+   <div class="journal-meta">
+    <span id="journal-name">Academic Monograph</span>
+    <span id="article-type">Open Access</span>
+   </div>
+   <h1 id="meta-title">Loading Title...</h1>
+   <div class="author-line" id="meta-author"></div>
+   <div class="affiliation-line" id="meta-affiliation"></div>
+  </header>
+
+  <section class="abstract-box" aria-labelledby="abstract-heading">
+   <h2 id="abstract-heading">Abstract</h2>
+   <p id="meta-abstract">Loading abstract...</p>
+   <div class="keywords">
+    <strong>Keywords: </strong><span id="meta-keywords"></span>
+   </div>
+  </section>
+
+  <section class="toolbar" aria-label="Document controls">
+   <span id="toolbar-system-tag"></span>
+   <div class="toggle-group">
+    <span id="toolbar-label-left"></span>
+    <label class="switch">
+     <input type="checkbox" id="apavada-toggle" aria-label="Toggle Apavada view">
+     <span class="slider"></span>
+    </label>
+    <span id="toolbar-label-right"></span>
+   </div>
+  </section>
+
+  <section class="triad-grid" id="triad-container" aria-label="Metaphysical triad"></section>
+  <section class="concordance-section" id="concordance-container"></section>
+  <section class="chapter-list" id="chapter-container" aria-label="Chapters"></section>
+
+  <footer id="footer-section">
+   <span id="footer-copyright"></span>
+   <span id="footer-license"></span>
+  </footer>
+ </main>
+ <script src="script.js"></script>
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-YPG5BRLC20"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-YPG5BRLC20');
+ </script>
 </body>
 
 </html>
