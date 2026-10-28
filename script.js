@@ -5,15 +5,67 @@ document.addEventListener('DOMContentLoaded', () => {
  const pageStatus = document.getElementById('page-status');
  const previousButton = document.getElementById('previous-button');
  const nextButton = document.getElementById('next-button');
+ const pageControls = document.querySelector('.page-controls');
+ const issueRail = document.querySelector('.issue-rail');
+ const readerWorkspace = document.querySelector('.reader-workspace');
+ const drawerToggle = document.getElementById('mobile-drawer-toggle');
+ const drawerBackdrop = document.getElementById('drawer-backdrop');
+ const mobileNavigationQuery = window.matchMedia('(max-width: 680px)');
+ const backToTopButton = document.getElementById('back-to-top');
  const articleCache = new Map();
  let currentArticleIndex = -1;
 
- document.getElementById('contents-button').addEventListener('click', () => showContents(true));
  document.getElementById('home-link').addEventListener('click', event => {
   event.preventDefault();
   showContents(true);
  });
- document.getElementById('print-button').addEventListener('click', () => window.print());
+ drawerToggle.addEventListener('click', () => {
+  setDrawerOpen(!readerWorkspace.classList.contains('reader-workspace--drawer-open'));
+ });
+ drawerBackdrop.addEventListener('click', closeDrawerAndReturnFocus);
+ document.addEventListener('keydown', event => {
+  if (!readerWorkspace.classList.contains('reader-workspace--drawer-open')) return;
+  if (event.key === 'Escape') {
+   closeDrawerAndReturnFocus();
+   return;
+  }
+  if (event.key !== 'Tab') return;
+  const links = issueNav.querySelectorAll('.rail-link');
+  if (!links.length) return;
+  const firstLink = links[0];
+  const lastLink = links[links.length - 1];
+  if (event.shiftKey && (document.activeElement === firstLink || !issueRail.contains(document.activeElement))) {
+   event.preventDefault();
+   lastLink.focus();
+  } else if (!event.shiftKey && (document.activeElement === lastLink || !issueRail.contains(document.activeElement))) {
+   event.preventDefault();
+   firstLink.focus();
+  }
+ });
+ mobileNavigationQuery.addEventListener('change', () => {
+  setDrawerOpen(false);
+  setNavigationState();
+ });
+ backToTopButton.addEventListener('click', () => {
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const articleScrollArea = readerPage.querySelector('.article-scroll-content');
+  if (articleScrollArea && !mobileNavigationQuery.matches) {
+   articleScrollArea.scrollTo({ top: 0, behavior });
+  } else {
+   window.scrollTo({ top: 0, behavior });
+  }
+ });
+ window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+ readerPage.addEventListener('scroll', updateBackToTopVisibility, { capture: true, passive: true });
+ updateBackToTopVisibility();
+ document.addEventListener('click', event => {
+  const citationLink = event.target.closest('.citation-link');
+  if (!citationLink) return;
+  const reference = document.getElementById(citationLink.hash.slice(1));
+  if (!reference) return;
+  event.preventDefault();
+  reference.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ });
  previousButton.addEventListener('click', () => openArticle(currentArticleIndex - 1, true));
  nextButton.addEventListener('click', () => openArticle(currentArticleIndex + 1, true));
  document.addEventListener('click', event => {
@@ -24,6 +76,27 @@ document.addEventListener('DOMContentLoaded', () => {
  });
  window.addEventListener('popstate', () => routeFromHash());
  loadArticleCatalog();
+
+ function updateBackToTopVisibility() {
+  const articleScrollArea = readerPage.querySelector('.article-scroll-content');
+  const scrollTop = articleScrollArea && !mobileNavigationQuery.matches ? articleScrollArea.scrollTop : window.scrollY;
+  backToTopButton.hidden = scrollTop <= window.innerHeight;
+ }
+
+ function setDrawerOpen(open) {
+  const shouldOpen = open && currentArticleIndex >= 0 && mobileNavigationQuery.matches;
+  readerWorkspace.classList.toggle('reader-workspace--drawer-open', shouldOpen);
+  drawerBackdrop.hidden = !shouldOpen;
+  drawerToggle.setAttribute('aria-expanded', String(shouldOpen));
+  document.body.classList.toggle('drawer-open', shouldOpen);
+  issueRail.inert = currentArticleIndex >= 0 && mobileNavigationQuery.matches && !shouldOpen;
+  if (shouldOpen) issueNav.querySelector('.rail-link')?.focus();
+ }
+
+ function closeDrawerAndReturnFocus() {
+  setDrawerOpen(false);
+  if (!drawerToggle.hidden) drawerToggle.focus();
+ }
 
  async function loadArticleCatalog() {
   try {
@@ -118,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
    errorPanel.append(createElement('p', 'eyebrow', 'Article unavailable'));
    errorPanel.append(createElement('h1', '', 'This article could not be opened.'));
    errorPanel.append(createElement('p', '', 'Check your connection and try loading the article again.'));
-   const retryButton = createElement('button', 'print-button', 'Retry');
+   const retryButton = createElement('button', 'action-button', 'Retry');
    retryButton.type = 'button';
    retryButton.addEventListener('click', () => openArticle(articleIndex, false));
    errorPanel.appendChild(retryButton);
@@ -135,7 +208,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const hasArticle = currentArticleIndex >= 0;
   previousButton.disabled = !hasArticle || currentArticleIndex === 0;
   nextButton.disabled = !hasArticle || currentArticleIndex === articleCatalog.length - 1;
-  document.getElementById('print-button').disabled = !hasArticle;
+  pageControls.hidden = !hasArticle;
+  readerWorkspace.classList.toggle('reader-workspace--article', hasArticle);
+  issueRail.hidden = !hasArticle;
+  drawerToggle.hidden = !hasArticle || !mobileNavigationQuery.matches;
+  setDrawerOpen(false);
  }
 
  function renderContentsPage() {
@@ -211,6 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
    header.appendChild(fields);
   }
   body.appendChild(header);
+  const scrollArea = createElement('div', 'article-scroll-content');
+  body.appendChild(scrollArea);
 
   if (metadata.abstract) {
    const abstract = createElement('section', 'abstract-section');
@@ -221,17 +300,17 @@ document.addEventListener('DOMContentLoaded', () => {
    if (metadata.keywords.length) {
     abstract.appendChild(createElement('p', 'keyword-line', `Keywords: ${metadata.keywords.join(' / ')}`));
    }
-   body.appendChild(abstract);
+   scrollArea.appendChild(abstract);
   }
 
-  renderArticleContent(data.content, body, catalogEntry);
+  renderArticleContent(data.content, scrollArea, catalogEntry);
 
   const footer = createElement('footer', 'article-footer');
   footer.append(createElement('span', '', `IOTECHX / ARTICLE ${catalogEntry.number}`));
   if (authorEntries.length) footer.append(renderAuthorLinks(authorEntries, 'span', 'footer-authors'));
   else footer.append(createElement('span', '', 'Open access'));
   if (data.footer?.license) footer.append(createElement('span', '', data.footer.license));
-  body.appendChild(footer);
+  scrollArea.appendChild(footer);
   return body;
  }
 
@@ -247,6 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
   header.appendChild(heading);
   if (article.summary) header.appendChild(createElement('p', 'article-subtitle', article.summary));
   body.appendChild(header);
+  const scrollArea = createElement('div', 'article-scroll-content');
+  body.appendChild(scrollArea);
 
   const actions = createElement('div', 'pdf-actions');
   const openLink = createElement('a', 'pdf-action-link', 'Open PDF in a new tab');
@@ -257,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
   downloadLink.href = article.file;
   downloadLink.download = '';
   actions.append(openLink, downloadLink);
-  body.appendChild(actions);
+  scrollArea.appendChild(actions);
 
   const viewer = createElement('div', 'pdf-viewer');
   const frame = document.createElement('iframe');
@@ -266,12 +347,12 @@ document.addEventListener('DOMContentLoaded', () => {
   frame.title = `PDF document: ${article.title}`;
   frame.loading = 'lazy';
   viewer.appendChild(frame);
-  body.appendChild(viewer);
+  scrollArea.appendChild(viewer);
 
   const footer = createElement('footer', 'article-footer');
   footer.append(createElement('span', '', `IOTECHX / ARTICLE ${article.number}`));
   footer.append(createElement('span', '', 'PDF edition'));
-  body.appendChild(footer);
+  scrollArea.appendChild(footer);
   return body;
  }
 
@@ -286,13 +367,15 @@ document.addEventListener('DOMContentLoaded', () => {
      item.id = `ref-${entry.id}`;
      const text = document.createElement('span');
      appendRichText(text, entry.text);
-     item.appendChild(text);
      if (entry.url) {
-      const link = createElement('a', 'reference-link', 'View source');
+      const link = createElement('a', 'reference-entry-link');
       link.href = entry.url;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
+      link.appendChild(text);
       item.appendChild(link);
+     } else {
+      item.appendChild(text);
      }
      list.appendChild(item);
     });
