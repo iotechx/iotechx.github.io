@@ -1314,6 +1314,18 @@ body {
  text-underline-offset: 3px;
 }
 
+.footer-authors {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.25rem;
+}
+
+.footer-authors a {
+ color: var(--accent-dark);
+ text-decoration-thickness: 1px;
+ text-underline-offset: 2px;
+}
+
 .article-affiliation {
  font-size: 0.72rem;
 }
@@ -1543,5 +1555,193 @@ body {
 
  .article-content {
   width: 100%;
+ }
+}
+
+.reader-workspace {
+ padding-bottom: 28px;
+}
+
+.issue-rail {
+ margin-bottom: 12px;
+}
+
+.rail-link {
+ padding-top: 6px;
+ padding-bottom: 6px;
+}
+
+.page-controls {
+ min-height: 30px;
+}
+
+.paper,
+.paper--contents {
+ padding-top: 16px;
+ padding-bottom: 22px;
+}
+
+.contents-page-title {
+ margin-top: 17px;
+ font-size: 1.55rem;
+}
+
+.contents-deck {
+ margin-bottom: 18px;
+ font-size: 0.76rem;
+}
+
+.contents-link {
+ gap: 0.65rem;
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+
+.contents-title {
+ font-size: 0.92rem;
+ line-height: 1.28;
+}
+
+.contents-summary {
+ font-size: 0.73rem;
+ line-height: 1.38;
+}
+
+.article-header {
+ margin-bottom: 16px;
+ padding-bottom: 11px;
+}
+
+.article-kicker-row {
+ margin-bottom: 12px;
+ padding-bottom: 5px;
+}
+
+.article-title {
+ font-size: 1.8rem;
+ line-height: 1.16;
+}
+
+.article-subtitle {
+ margin-top: 0.5rem;
+ font-size: 0.98rem;
+ line-height: 1.36;
+}
+
+.article-author {
+ margin-top: 8px;
+}
+
+.abstract-section {
+ margin-bottom: 16px;
+ padding-bottom: 10px;
+}
+
+.abstract-section p,
+.article-section p,
+.article-section li,
+.definition-entry dd {
+ font-size: 0.9rem;
+ line-height: 1.5;
+}
+
+.abstract-section .keyword-line {
+ margin-top: 0.55rem;
+}
+
+.article-section {
+ margin-bottom: 16px;
+}
+
+.section-heading {
+ margin-bottom: 7px;
+ font-size: 0.92rem;
+ line-height: 1.3;
+}
+
+.subsection-heading {
+ margin-top: 13px;
+ margin-bottom: 5px;
+ font-size: 0.86rem;
+}
+
+.article-section ul {
+ margin-bottom: 0.7rem;
+}
+
+.definition-entry {
+ gap: 0.3rem 0.8rem;
+ padding: 0.45rem 0;
+}
+
+.article-section blockquote {
+ margin: 0.8rem 0;
+ font-size: 1.02rem;
+ line-height: 1.4;
+}
+
+.article-section figure {
+ margin: 0.9rem 0 1rem;
+}
+
+.article-section figcaption {
+ margin-top: 0.4rem;
+ font-size: 0.64rem;
+}
+
+.framework-entry {
+ padding: 0.6rem 0;
+}
+
+.framework-entry h3 {
+ font-size: 0.9rem;
+}
+
+.table-wrap th,
+.table-wrap td {
+ padding: 0.38rem 0.35rem;
+}
+
+.paper-footer,
+.article-footer {
+ margin-top: 20px;
+ padding-top: 6px;
+}
+
+@media (max-width: 680px) {
+ .reader-workspace {
+  padding-bottom: 20px;
+ }
+
+ .paper,
+ .paper--contents {
+  padding-top: 12px;
+  padding-bottom: 18px;
+ }
+
+ .contents-page-title {
+  margin-top: 14px;
+  font-size: 1.4rem;
+ }
+
+ .contents-deck {
+  margin-bottom: 14px;
+ }
+
+ .contents-link {
+  padding-top: 8px;
+  padding-bottom: 8px;
+ }
+
+ .article-title {
+  font-size: 1.5rem;
+ }
+
+ .abstract-section p,
+ .article-section p,
+ .article-section li,
+ .definition-entry dd {
+  font-size: 0.88rem;
+  line-height: 1.48;
  }
 }

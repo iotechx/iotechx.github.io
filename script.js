@@ -190,27 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
   header.appendChild(heading);
   if (metadata.subtitle) header.appendChild(createElement('p', 'article-subtitle', metadata.subtitle));
 
-  const authorEntries = metadata.authors || [];
+  const authorEntries = Array.isArray(metadata.authors) ? metadata.authors : [];
   const authors = authorEntries.map(author => author.name).join(' · ');
   if (authorEntries.length) {
-   const authorLine = createElement('p', 'article-author');
-   authorEntries.forEach((author, index) => {
-    if (index) authorLine.appendChild(document.createTextNode(' · '));
-    let authorUrl;
-    try {
-     authorUrl = new URL(author.url, document.baseURI);
-    } catch { }
-    if (authorUrl && ['http:', 'https:'].includes(authorUrl.protocol)) {
-     const link = createElement('a', '', author.name);
-     link.href = authorUrl.href;
-     link.target = '_blank';
-     link.rel = 'noopener noreferrer';
-     authorLine.appendChild(link);
-    } else {
-     authorLine.appendChild(document.createTextNode(author.name));
-    }
-   });
-   header.appendChild(authorLine);
+   header.appendChild(renderAuthorLinks(authorEntries, 'p', 'article-author'));
   }
   if (metadata.affiliation) header.appendChild(createElement('p', 'article-affiliation', metadata.affiliation));
   if (Array.isArray(metadata.fields) && metadata.fields.length) {
@@ -245,7 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const footer = createElement('footer', 'article-footer');
   footer.append(createElement('span', '', `IOTECHX / ARTICLE ${catalogEntry.number}`));
-  footer.append(createElement('span', '', authors || 'Open access'));
+  if (authorEntries.length) footer.append(renderAuthorLinks(authorEntries, 'span', 'footer-authors'));
+  else footer.append(createElement('span', '', 'Open access'));
   if (data.footer?.license) footer.append(createElement('span', '', data.footer.license));
   body.appendChild(footer);
   return body;
@@ -454,5 +438,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (className) element.className = className;
   if (text) element.textContent = text;
   return element;
+ }
+
+ function renderAuthorLinks(authors, tagName, className) {
+  const authorList = createElement(tagName, className);
+  authors.forEach((author, index) => {
+   if (index) authorList.appendChild(document.createTextNode(' · '));
+   let authorUrl;
+   try {
+    authorUrl = new URL(author.url, document.baseURI);
+   } catch { }
+   if (authorUrl && ['http:', 'https:'].includes(authorUrl.protocol)) {
+    const link = createElement('a', '', author.name);
+    link.href = authorUrl.href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    authorList.appendChild(link);
+   } else {
+    authorList.appendChild(document.createTextNode(author.name));
+   }
+  });
+  return authorList;
  }
 });
