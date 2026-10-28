@@ -4,60 +4,49 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title id="page-title">Loading Manuscript...</title>
+ <meta name="theme-color" content="#e8e9df">
+ <meta name="description"
+  content="A journal of independent research in consciousness, metaphysics, theology, and technology.">
+ <title>Fieldnotes | Journal of Consciousness &amp; Metaphysics</title>
  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
- <main class="a4-container">
-  <header>
-   <div class="journal-meta">
-    <span id="journal-name">Academic Monograph</span>
-    <span id="article-type">Open Access</span>
+ <div class="reader-shell">
+  <header class="reader-topbar">
+   <a class="wordmark" href="#contents" id="home-link" aria-label="Fieldnotes journal contents">
+    <span>FIELDNOTES <small>JOURNAL OF CONSCIOUSNESS &amp; METAPHYSICS</small></span>
+   </a>
+   <div class="topbar-actions">
+    <button class="text-button" id="contents-button" type="button">Contents</button>
+    <button class="print-button" id="print-button" type="button">Print article</button>
    </div>
-   <h1 id="meta-title">Loading Title...</h1>
-   <div class="author-line" id="meta-author"></div>
-   <div class="affiliation-line" id="meta-affiliation"></div>
   </header>
 
-  <section class="abstract-box" aria-labelledby="abstract-heading">
-   <h2 id="abstract-heading">Abstract</h2>
-   <p id="meta-abstract">Loading abstract...</p>
-   <div class="keywords">
-    <strong>Keywords: </strong><span id="meta-keywords"></span>
+  <div class="reader-workspace">
+   <aside class="issue-rail" aria-label="Articles in this issue">
+    <div class="rail-heading">
+     <span class="eyebrow">Issue 01 / 2026</span>
+     <h2>In this issue</h2>
+    </div>
+    <nav id="issue-nav" class="issue-nav" aria-label="Choose an article"></nav>
+    <p class="rail-note">Two long-form studies<br>Open access / 2026</p>
+   </aside>
+
+   <div class="page-stage">
+    <div class="page-controls" aria-label="Article navigation">
+     <button id="previous-button" class="page-control" type="button" aria-label="Previous article">←
+      <span>Previous</span></button>
+     <span id="page-status" class="page-status" aria-live="polite">Contents</span>
+     <button id="next-button" class="page-control" type="button" aria-label="Next article"><span>Next</span> →</button>
+    </div>
+    <main id="reader-page" class="paper" aria-live="polite" aria-busy="false" tabindex="-1">
+     <p class="loading-message">Opening the issue…</p>
+    </main>
    </div>
-  </section>
-
-  <section class="toolbar" aria-label="Document controls">
-   <span id="toolbar-system-tag"></span>
-   <div class="toggle-group">
-    <span id="toolbar-label-left"></span>
-    <label class="switch">
-     <input type="checkbox" id="apavada-toggle" aria-label="Toggle Apavada view">
-     <span class="slider"></span>
-    </label>
-    <span id="toolbar-label-right"></span>
-   </div>
-  </section>
-
-  <section class="triad-grid" id="triad-container" aria-label="Metaphysical triad"></section>
-  <section class="concordance-section" id="concordance-container"></section>
-  <section class="chapter-list" id="chapter-container" aria-label="Chapters"></section>
-
-  <footer id="footer-section">
-   <span id="footer-copyright"></span>
-   <span id="footer-license"></span>
-  </footer>
- </main>
+  </div>
+ </div>
  <script src="script.js"></script>
- <!-- Global site tag (gtag.js) - Google Analytics -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-YPG5BRLC20"></script>
- <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-YPG5BRLC20');
- </script>
 </body>
 
 </html>
