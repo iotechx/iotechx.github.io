@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
  function showContents(updateHistory) {
   currentArticleIndex = -1;
   if (updateHistory) history.pushState({ view: 'contents' }, '', `${location.pathname}${location.search}#contents`);
-  document.title = 'Fieldnotes | Journal of Consciousness & Metaphysics';
+  document.title = 'IOTechX | Journal of Consciousness & Metaphysics';
   pageStatus.textContent = 'Contents';
   readerPage.setAttribute('aria-busy', 'false');
   readerPage.classList.add('paper--contents');
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const article = articleCatalog[articleIndex];
   currentArticleIndex = articleIndex;
   if (updateHistory) history.pushState({ articleId: article.id }, '', `${location.pathname}${location.search}#${article.id}`);
-  document.title = `${article.title} | Fieldnotes`;
+  document.title = `${article.title} | IOTechX`;
   pageStatus.textContent = `Article ${article.number} of ${articleCatalog.length}`;
   readerPage.classList.remove('paper--contents');
   readerPage.setAttribute('aria-busy', 'true');
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   contents.appendChild(list);
   content.appendChild(contents);
-  content.appendChild(createElement('footer', 'paper-footer', 'FIELDNOTES  /  OPEN ACCESS  /  2026'));
+  content.appendChild(createElement('footer', 'paper-footer', 'IOTECHX  /  OPEN ACCESS  /  2026'));
   return content;
  }
 
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderArticleContent(data.content, body, catalogEntry);
 
   const footer = createElement('footer', 'article-footer');
-  footer.append(createElement('span', '', `FIELDNOTES / ARTICLE ${catalogEntry.number}`));
+  footer.append(createElement('span', '', `IOTECHX / ARTICLE ${catalogEntry.number}`));
   footer.append(createElement('span', '', authors || 'Open access'));
   if (data.footer?.license) footer.append(createElement('span', '', data.footer.license));
   body.appendChild(footer);
@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
   body.appendChild(viewer);
 
   const footer = createElement('footer', 'article-footer');
-  footer.append(createElement('span', '', `FIELDNOTES / ARTICLE ${article.number}`));
+  footer.append(createElement('span', '', `IOTECHX / ARTICLE ${article.number}`));
   footer.append(createElement('span', '', 'PDF edition'));
   body.appendChild(footer);
   return body;

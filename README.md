@@ -1,4 +1,4 @@
-# Fieldnotes
+# IOTechX
 
 Static A4 journal reader for independent research articles.
 
