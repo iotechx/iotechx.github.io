@@ -104,7 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
    if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
    const entries = await response.json();
    if (!Array.isArray(entries)) throw new Error('Article catalog must be an array');
-   articleCatalog.push(...entries);
+   articleCatalog.push(...entries.map((article, index) => ({
+    ...article,
+    number: String(index + 1).padStart(2, '0')
+   })));
    renderIssueNavigation();
    routeFromHash();
   } catch (error) {
@@ -123,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
    link.className = 'rail-link';
    link.href = `#${article.id}`;
    link.dataset.articleIndex = index;
-   link.innerHTML = `<span class="rail-number">${article.number}</span><span class="rail-link-copy"><span class="rail-category">${article.category}</span><span class="rail-title">${article.title}</span></span>`;
+   link.innerHTML = `<span class="rail-number">${article.number}</span><span class="rail-link-copy"><span class="rail-category">${article.category} / ${article.year}</span><span class="rail-title">${article.title}</span></span>`;
    item.appendChild(link);
    list.appendChild(item);
   });
@@ -219,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const content = createElement('div', 'contents-content');
   const masthead = createElement('div', 'contents-masthead');
   masthead.append(createElement('span', 'eyebrow', 'Journal of Consciousness and Metaphysics'));
-  masthead.append(createElement('span', 'cover-year', '2026'));
   content.appendChild(masthead);
 
   content.appendChild(createElement('h1', 'contents-page-title', 'Contents'));
@@ -239,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
    link.dataset.articleIndex = index;
    link.append(createElement('span', 'contents-number', article.number));
    const copy = createElement('span', 'contents-copy');
-   copy.append(createElement('span', 'eyebrow', article.category));
+   copy.append(createElement('span', 'eyebrow', `${article.category} / ${article.year}`));
    copy.append(createElement('span', 'contents-title', article.title));
    copy.append(createElement('span', 'contents-summary', article.summary));
    link.appendChild(copy);
@@ -249,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   contents.appendChild(list);
   content.appendChild(contents);
-  content.appendChild(createElement('footer', 'paper-footer', 'IOTECHX  /  OPEN ACCESS  /  2026'));
+  content.appendChild(createElement('footer', 'paper-footer', 'IOTECHX  /  OPEN ACCESS'));
   return content;
  }
 
@@ -260,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = createElement('header', 'article-header');
   const headerLine = createElement('div', 'article-kicker-row');
   headerLine.append(createElement('span', 'eyebrow', `${catalogEntry.number} / ${catalogEntry.category}`));
-  headerLine.append(createElement('span', 'article-year', metadata.year || metadata.date || '2026'));
+  headerLine.append(createElement('span', 'article-year', metadata.year || metadata.date || catalogEntry.year));
   header.appendChild(headerLine);
   const heading = createElement('h1', 'article-title', title);
   heading.tabIndex = -1;
@@ -319,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = createElement('header', 'article-header');
   const headerLine = createElement('div', 'article-kicker-row');
   headerLine.append(createElement('span', 'eyebrow', `${article.number} / ${article.category}`));
-  headerLine.append(createElement('span', 'article-year', article.year || '2026'));
+  headerLine.append(createElement('span', 'article-year', article.year));
   header.appendChild(headerLine);
   const heading = createElement('h1', 'article-title', article.title);
   heading.tabIndex = -1;
