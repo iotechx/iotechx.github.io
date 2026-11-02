@@ -7,11 +7,15 @@
         "date": "2026",
         "authors": [
             {
-                "name": "IOTechX Epistemology Lab",
-                "url": "https://iotechx.github.io/"
+                "name": "Abraham Pollayil Alexander",
+                "url": "https://iotechx.github.io/abraham"
+            },
+            {
+                "name": "Gemini AI",
+                "url": "https://gemini.google.com/"
             }
         ],
-        "affiliation": "Independent Research Network",
+        "affiliation": "Independent Researcher, Kozhikode, Kerala, India",
         "fields": [
             {
                 "name": "Epistemology",
