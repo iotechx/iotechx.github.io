@@ -6,10 +6,14 @@
     "subtitle": "A Synthesis of Biblical Typology, Advaita Vedānta, and Philosophy of Technology",
     "date": "2026",
     "authors": [
-      {
-        "name": "Abraham Pollayil Alexander",
-        "url": "https://iotechx.github.io/abraham"
-      }
+            {
+                "name": "Abraham Pollayil Alexander",
+                "url": "https://iotechx.github.io/abraham"
+            },
+            {
+                "name": "Gemini AI",
+                "url": "https://gemini.google.com/"
+            }
     ],
     "affiliation": "Independent Researcher, Kozhikode, Kerala, India",
     "fields": [],
