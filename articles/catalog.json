@@ -45,6 +45,15 @@
         "year": "2026"
     },
     {
+        "id": "നിരുക്തവും-ശാന്തിയും",
+        "type": "pdf",
+        "file": "articles/നിരുക്തവും-ശാന്തിയും.pdf",
+        "category": "ദാർശനം / നിരുക്തം",
+        "title": "നിരുക്തവും ശാന്തിയും - ദാർശനിക ലേഖനം",
+        "summary": "ഭാഷയുടെ അടിവേരുകളിലൂടെയുള്ള ഒരു പദാനുപദ അന്വേഷണം",
+        "year": "2026"
+    },
+    {
         "id": "loneliness-naming-and-completion-in-genesis",
         "type": "pdf",
         "file": "articles/loneliness-naming-and-completion-in-genesis.pdf",
