@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
  }
 
  function routeFromHash() {
-  console.log(location.hash, location.hash.slice(1), decodeHtmlEntities(location.hash.slice(1)));
-  const articleIndex = articleCatalog.findIndex(article => article.id === decodeHtmlEntities(location.hash.slice(1)));
+  console.log(location.hash, location.hash.slice(1), convertToHashtag(location.hash.slice(1)));
+  const articleIndex = articleCatalog.findIndex(article => article.id === convertToHashtag(location.hash.slice(1)));
   if (articleIndex < 0) {
    showContents(false);
    return;
@@ -143,10 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
   openArticle(articleIndex, false);
  }
 
- function decodeHtmlEntities(htmlString) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlString, 'text/html');
-    return doc.body.textContent || "";
+function convertToHashtag(encodedStr) {
+    // 1. Decode the percent-encoded string to plain Unicode
+    const decodedText = decodeURIComponent(encodedStr);
+    
+    // 2. Replace spaces or punctuation with hyphens if necessary, 
+    // and format as a clean hashtag
+    const cleanTag = decodedText.trim().replace(/\s+/g, '-');
+    
+    return `#${cleanTag}`;
 }
 
  function showContents(updateHistory) {
