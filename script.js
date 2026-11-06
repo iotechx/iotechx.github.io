@@ -151,7 +151,7 @@ function convertToHashtag(encodedStr) {
     // and format as a clean hashtag
     const cleanTag = decodedText.trim().replace(/\s+/g, '-');
     
-    return `#${cleanTag}`;
+    return `${cleanTag}`;
 }
 
  function showContents(updateHistory) {
