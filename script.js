@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
  }
 
  function routeFromHash() {
+  console.log(location.hash, location.hash.slice(1));
   const articleIndex = articleCatalog.findIndex(article => article.id === location.hash.slice(1));
   if (articleIndex < 0) {
    showContents(false);
