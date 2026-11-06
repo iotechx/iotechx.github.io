@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (articleIndex < 0 || articleIndex >= articleCatalog.length) return;
   const article = articleCatalog[articleIndex];
   currentArticleIndex = articleIndex;
-  console.log(`${location.pathname}${location.search}#${article.id}`);
+  console.log(`${location.pathname}${location.search}#${article.id}, ${article.number}`);
   if (updateHistory) history.pushState({ articleId: article.id }, '', `${location.pathname}${location.search}#${article.id}`);
   document.title = `${article.title} | IOTechX`;
   pageStatus.textContent = `Article ${article.number} of ${articleCatalog.length}`;
