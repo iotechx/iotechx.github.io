@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
  function routeFromHash() {
   const articleIndex = articleCatalog.findIndex(article => article.id === convertToHashtag(location.hash.slice(1)));
-  console.log(convertToHashtag(location.hash.slice(1)), articleIndex);
+  //console.log(convertToHashtag(location.hash.slice(1)), articleIndex);
   if (articleIndex < 0) {
    showContents(false);
    return;
@@ -170,7 +170,7 @@ function convertToHashtag(encodedStr) {
   if (articleIndex < 0 || articleIndex >= articleCatalog.length) return;
   const article = articleCatalog[articleIndex];
   currentArticleIndex = articleIndex;
-  console.log(`${location.pathname}${location.search}#${article.id}, ${article.number}`);
+  //console.log(`${location.pathname}${location.search}#${article.id}, ${article.number}`);
   if (updateHistory) history.pushState({ articleId: article.id }, '', `${location.pathname}${location.search}#${article.id}`);
   document.title = `${article.title} | IOTechX`;
   pageStatus.textContent = `Article ${article.number} of ${articleCatalog.length}`;
