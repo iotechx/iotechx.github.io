@@ -220,9 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
  function renderContentsPage() {
   const content = createElement('div', 'contents-content');
-  const masthead = createElement('div', 'contents-masthead');
-  masthead.append(createElement('span', 'eyebrow', 'Journal of Consciousness and Metaphysics'));
-  content.appendChild(masthead);
+  //const masthead = createElement('div', 'contents-masthead');
+  //masthead.append(createElement('span', 'eyebrow', 'Journal of Consciousness and Metaphysics'));
+  //content.appendChild(masthead);
 
   content.appendChild(createElement('h1', 'contents-page-title', 'Contents'));
   content.appendChild(createElement('p', 'contents-deck', 'Research articles / Open access'));
