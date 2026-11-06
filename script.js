@@ -134,14 +134,20 @@ document.addEventListener('DOMContentLoaded', () => {
  }
 
  function routeFromHash() {
-  console.log(location.hash, location.hash.slice(1));
-  const articleIndex = articleCatalog.findIndex(article => article.id === location.hash.slice(1));
+  console.log(location.hash, location.hash.slice(1), decodeHtmlEntities(location.hash.slice(1)));
+  const articleIndex = articleCatalog.findIndex(article => article.id === decodeHtmlEntities(location.hash.slice(1)));
   if (articleIndex < 0) {
    showContents(false);
    return;
   }
   openArticle(articleIndex, false);
  }
+
+ function decodeHtmlEntities(htmlString) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    return doc.body.textContent || "";
+}
 
  function showContents(updateHistory) {
   currentArticleIndex = -1;
