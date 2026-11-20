@@ -54,6 +54,15 @@
         "year": "2026"
     },
     {
+        "id": "ഉണ്മ-ഭ്രമത്തിനും-ആധാരം",
+        "type": "json",
+        "file": "articles/ഉണ്മ-ഭ്രമത്തിനും-ആധാരം/thesis.json",
+        "category": "അദ്വൈതം / വേദാന്തം / ജ്ഞാനശാസ്ത്രം, / അതിഭൗതികം",
+        "title": "ഉണ്മ: ഭ്രമത്തിനും ആധാരമായ സ്ഥിതി",
+        "summary": "അദ്വൈതത്തിന്റെ യുക്തിപരമായ അടിത്തറയെക്കുറിച്ചൊരു പ്രബന്ധം",
+        "year": "2026"
+    },
+    {
         "id": "the-simulated-universe-book",
         "type": "pdf",
         "file": "articles/the-simulated-universe/the-simulated-universe-the-heptadic-somatic-laboratory-and-epigenetic-readouts.pdf",
